@@ -13,22 +13,29 @@ end
 -- This is where you actually apply your config choices
 
 -- For example, changing the color scheme:
-config.color_scheme = 'Breath Silverfox (Gogh)'
+config.color_scheme = 'niji'
 
-wezterm.on('update-right-status', function(window, pane)
+wezterm.on('update-right-status', function(window, _pane)
   window:set_right_status(window:active_workspace())
 end)
 
+config.window_background_opacity = 0.9
+
+-- Tab bar config
+config.hide_tab_bar_if_only_one_tab = true
+
 -- Key bindings
+config.leader = { key = 'a', mods = 'CTRL' }
 config.keys = {
+  -- Pane related keybindings
   {
     key = '|',
-    mods = 'CTRL|SHIFT',
+    mods = 'LEADER|SHIFT',
     action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
   },
   {
     key = '-',
-    mods = 'CTRL',
+    mods = 'LEADER',
     action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
   },
   {
@@ -71,9 +78,10 @@ config.keys = {
     mods = 'ALT',
     action = wezterm.action.AdjustPaneSize { 'Right', 5 },
   },
+  -- Workspace
   {
     key = 'c',
-    mods = 'CTRL|SHIFT',
+    mods = 'LEADER',
     action = wezterm.action.PromptInputLine {
       description = wezterm.format {
         { Attribute = { Intensity = 'Bold' } },
@@ -97,7 +105,7 @@ config.keys = {
   },
   {
     key = 's',
-    mods = 'CTRL|SHIFT',
+    mods = 'LEADER',
     action = wezterm.action.ShowLauncherArgs {
       flags = 'FUZZY|WORKSPACES'
     }
