@@ -19,6 +19,11 @@ wezterm.on('update-right-status', function(window, _pane)
   window:set_right_status(window:active_workspace())
 end)
 
+wezterm.on('gui-startup', function(cmd)
+  local _tab, _pane, window = wezterm.mux.spawn_window(cmd or {})
+  window:gui_window():maximize()
+end)
+
 config.window_background_opacity = 0.9
 
 -- Tab bar config
