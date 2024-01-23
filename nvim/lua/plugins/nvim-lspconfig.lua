@@ -101,9 +101,15 @@ return {
       capabilities = capabilities,
     })
 
+    -- Ocaml LSP
+    nvim_lsp.ocamllsp.setup({
+      on_attach = on_attach,
+      capabilities = capabilities,
+    })
+
     -- format on save
     vim.api.nvim_create_autocmd("BufWritePre", {
-      pattern = { "*.rs", "*.fs", "*.lua" },
+      pattern = { "*.rs", "*.fs", "*.lua", "*.ml" },
       callback = function()
         vim.lsp.buf.format(nil, 200)
       end,
