@@ -34,6 +34,10 @@ vim.keymap.set('n', '<leader>gc', ':GitConflictListQf<cr>', { desc = 'Quick find
 vim.keymap.set('n', '<F4>', ':%s///g<Left><Left>', { desc = 'Search & Replace' })
 vim.keymap.set('v', '<F4>', ':s///g<Left><Left>', { desc = 'Search & Replace' })
 
+-- centering cursor in screen when moving vertically
+vim.keymap.set('n', 'j', 'jzz', { noremap = true })
+vim.keymap.set('n', 'k', 'kzz', { noremap = true })
+
 -- centering cursor in screen when moving fast vertically
 vim.keymap.set('n', '{', '{zz', { noremap = true })
 vim.keymap.set('n', '}', '}zz', { noremap = true })
