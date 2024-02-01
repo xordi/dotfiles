@@ -5,6 +5,14 @@ return {
   opts = {
     options = {
       globalstatus = true
-    }
+    },
+    sections = {
+      lualine_c = {
+        {
+          "filename",
+          path = 1,
+        }
+      },
+    },
   }
 }
