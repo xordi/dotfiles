@@ -14,6 +14,8 @@ end
 
 -- For example, changing the color scheme:
 config.color_scheme = 'niji'
+config.font_size = 12
+config.font = wezterm.font('JetBrainsMono Nerd Font', { weight = 'DemiBold', style = 'Normal' })
 
 wezterm.on('update-right-status', function(window, _pane)
   window:set_right_status(window:active_workspace())
