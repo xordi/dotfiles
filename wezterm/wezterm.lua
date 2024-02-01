@@ -11,8 +11,7 @@ if wezterm.config_builder then
 end
 
 -- This is where you actually apply your config choices
-
--- For example, changing the color scheme:
+config.window_decorations = 'RESIZE'
 config.color_scheme = 'niji'
 config.font_size = 12
 config.font = wezterm.font('JetBrainsMono Nerd Font', { weight = 'DemiBold', style = 'Normal' })
