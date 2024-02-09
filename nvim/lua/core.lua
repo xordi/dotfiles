@@ -33,7 +33,7 @@ vim.keymap.set('n', '<leader>r', ':luafile ~/.config/nvim/init.lua<cr>', { desc 
 vim.keymap.set('n', '<leader>gc', ':GitConflictListQf<cr>', { desc = 'Quick find git conflicts' })
 vim.keymap.set('n', '<F4>', ':%s///g<Left><Left>', { desc = 'Search & Replace' })
 vim.keymap.set('v', '<F4>', ':s///g<Left><Left>', { desc = 'Search & Replace' })
-vim.keymap.set('n', '<leader>ba', ':%bd', { desc = 'Close all buffers' })
+vim.keymap.set('n', '<leader>ba', ':%bd<CR>', { desc = 'Close all buffers', silent = true })
 
 -- centering cursor in screen when moving vertically
 vim.keymap.set('n', 'j', 'jzz', { noremap = true })
