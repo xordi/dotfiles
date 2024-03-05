@@ -8,9 +8,15 @@ return {
       build = 'make',
     },
   },
-  config = function()
+  opts = {
+    defaults = {
+      file_ignore_patterns = { 'node_modules/', '.git/', 'target/' },
+    },
+  },
+  config = function(_p, opts)
     local builtin = require('telescope.builtin')
-    vim.keymap.set('n', '<leader>f', builtin.find_files, { desc = 'Find files' })
+    vim.keymap.set('n', '<leader>f', ':lua require("telescope.builtin").find_files({hidden=true, no_ignore=true})<CR>',
+      { desc = 'Find files', silent = true })
     vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'LiveGrep find' })
     vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Find buffers' })
     vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Help tags' })
@@ -23,6 +29,7 @@ return {
     vim.keymap.set('n', 'gD', builtin.lsp_type_definitions, { desc = 'Goto type definitions' })
     vim.keymap.set('n', 'gr', builtin.lsp_references, { desc = 'Goto references' })
 
+    require('telescope').setup(opts)
     require('telescope').load_extension('fzf')
   end
 }
