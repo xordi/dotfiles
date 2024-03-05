@@ -1,7 +1,8 @@
 return {
-  "rebelot/kanagawa.nvim",
+  "mcchrish/zenbones.nvim",
   priority = 1000,
   config = function()
-    vim.cmd([[colorscheme kanagawa]])
+    vim.g.bones_compat = true
+    vim.cmd.colorscheme("forestbones")
   end
 }
