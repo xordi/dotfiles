@@ -10,7 +10,7 @@ return {
   },
   opts = {
     defaults = {
-      file_ignore_patterns = { 'node_modules/', '.git/', 'target/' },
+      file_ignore_patterns = { 'node_modules/', '.git/', 'target/', '.elixir_ls/', '_build/' },
     },
   },
   config = function(_p, opts)
