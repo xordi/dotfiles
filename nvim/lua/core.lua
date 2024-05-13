@@ -13,6 +13,9 @@ vim.opt.updatetime = 100
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+vim.opt.grepprg = 'rg --vimgrep --no-heading --smart-case'
+vim.opt.grepformat = '%f:%l:%c:%m'
+
 -- mappings
 vim.g.mapleader = ' '
 vim.keymap.set('n', '<Esc>', ':noh<cr>', { noremap = true, silent = true })
