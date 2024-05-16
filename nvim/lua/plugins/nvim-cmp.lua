@@ -8,6 +8,20 @@ return {
   },
   event = "InsertEnter",
   opts = function()
+    local ls = require("luasnip")
+
+    vim.keymap.set({ "i", "s" }, "<c-j>", function()
+      if ls.jumpable(-1) then
+        ls.jump(-1)
+      end
+    end, { silent = true })
+
+    vim.keymap.set({ "i", "s" }, "<c-k>", function()
+      if ls.expand_or_jumpable() then
+        ls.expand_or_jump()
+      end
+    end, { silent = true })
+
     local cmp = require("cmp")
     return {
       preselect = cmp.PreselectMode.None,
@@ -19,38 +33,14 @@ return {
       mapping = {
         ["<C-p>"] = cmp.mapping.select_prev_item(),
         ["<C-n>"] = cmp.mapping.select_next_item(),
-        -- Add tab support
-        ["<Tab>"] = cmp.mapping(function(fallback)
-          local luasnip = require("luasnip")
-          if cmp.visible() then
-            cmp.select_next_item()
-            -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-            -- they way you will only jump inside the snippet region
-          elseif luasnip.expand_or_locally_jumpable() then
-            luasnip.expand_or_jump()
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
-
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-          local luasnip = require("luasnip")
-          if cmp.visible() then
-            cmp.select_prev_item()
-          elseif luasnip.jumpable(-1) then
-            luasnip.jump(-1)
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
+        ["<C-y>"] = cmp.mapping(
+          cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Insert }),
+          { "i", "c" }
+        ),
         ["<C-d>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.close(),
-        ["<CR>"] = cmp.mapping.confirm({
-          behavior = cmp.ConfirmBehavior.Insert,
-          select = true,
-        }),
       },
 
       -- Installed sources
