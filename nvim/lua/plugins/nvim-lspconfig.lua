@@ -61,7 +61,8 @@ return {
             prefix = "crate",
           },
           checkOnSave = {
-            command = "clippy"
+            command = "check",
+            features = "all",
           },
           cargo = {
             buildScripts = {
