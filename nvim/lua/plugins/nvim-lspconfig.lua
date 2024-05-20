@@ -20,6 +20,9 @@ return {
 
       vim.keymap.set("n", "<leader>lc", "I//<Esc>", keymap_opts)
       vim.keymap.set("v", "<leader>c", ":s@^@//@<cr><Esc>", keymap_opts)
+
+      -- Enable inlay hints
+      vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
     end
 
     -- Elixir LS
