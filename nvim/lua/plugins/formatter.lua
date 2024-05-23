@@ -1,6 +1,6 @@
 return {
   "mhartington/formatter.nvim",
-  ft = { "yaml", "sql", "graphql", "json" },
+  ft = { "yaml", "sql", "graphql", "json", "xml" },
   opts = function()
     local mason_bin = vim.fn.stdpath("data") .. "/mason/bin"
     return {
@@ -35,6 +35,9 @@ return {
         },
         json = {
           require("formatter.filetypes.json").jq,
+        },
+        xml = {
+          require("formatter.filetypes.xml").tidy
         }
       }
     }
