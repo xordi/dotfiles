@@ -3,6 +3,6 @@ return {
   priority = 1000,
   config = function()
     vim.g.bones_compat = true
-    vim.cmd.colorscheme("forestbones")
+    vim.cmd.colorscheme("zenburned")
   end
 }
