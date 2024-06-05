@@ -4,6 +4,7 @@ return {
   config = function()
     require("nvim-treesitter.configs").setup({
       ensure_installed = { "rust", "vim", "lua", "elixir", "heex", "eex", "yaml", "json" },
+      sync_install = false,
       auto_install = true,
       highlight = {
         enable = true,
