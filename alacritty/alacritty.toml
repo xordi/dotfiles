@@ -9,6 +9,8 @@ style = "Regular"
 opacity = 0.8
 startup_mode = "Maximized"
 
-[shell]
+[terminal]
+
+[terminal.shell]
 program = "/bin/zsh"
 args = ["-l", "-c", "tmux attach || tmux"]
