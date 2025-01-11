@@ -6,6 +6,6 @@ return {
   lazy = true,
   opts = {
     ensure_installed = { "lua_ls", "rust_analyzer" },
-    automatic_installation = { exclude = { "ocamllsp" } },
+    automatic_installation = { exclude = { "ocamllsp", "zls" } },
   }
 }

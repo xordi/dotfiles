@@ -111,9 +111,20 @@ return {
       capabilities = capabilities,
     })
 
+    -- Zig LSP
+    nvim_lsp.zls.setup({
+      on_attach = on_attach,
+      capabilities = capabilities,
+      setings = {
+        zls = {
+          enable_build_on_save = false,
+        },
+      },
+    })
+
     -- format on save
     vim.api.nvim_create_autocmd("BufWritePre", {
-      pattern = { "*.rs", "*.fs", "*.lua", "*.ml" },
+      pattern = { "*.rs", "*.fs", "*.lua", "*.ml", "*.zig" },
       callback = function()
         vim.lsp.buf.format(nil, 200)
       end,
