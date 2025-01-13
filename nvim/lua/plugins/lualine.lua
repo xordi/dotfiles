@@ -4,7 +4,8 @@ return {
   config = true,
   opts = {
     options = {
-      globalstatus = true
+      globalstatus = true,
+      theme = "ayu_mirage",
     },
     sections = {
       lualine_c = {
