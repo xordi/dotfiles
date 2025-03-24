@@ -52,32 +52,17 @@ vim.keymap.set('n', '<C-i>', '<C-i>zz', { noremap = true })
 vim.keymap.set('n', 'n', 'nzz', { noremap = true })
 vim.keymap.set('n', 'N', 'Nzz', { noremap = true })
 
--- surroundings
-vim.keymap.set('n', '<A-w>"', 'ciw""<Esc>P',
-  { noremap = true, silent = true, desc = "Sorrund word under cursor with double quotes" })
-vim.keymap.set('n', '<A-w>(', 'ciw()<Esc>P',
-  { noremap = true, silent = true, desc = "Surrond word under cursor with parenthesis" })
-vim.keymap.set('n', '<A-w>[', 'ciw[]<Esc>P',
-  { noremap = true, silent = true, desc = "Surround word under cursor with square brackets" })
-vim.keymap.set('n', '<A-w>{', 'ciw{}<Esc>P',
-  { noremap = true, silent = true, desc = "Surround word under cursor with brackets" })
-vim.keymap.set('n', "<A-w>'", "ciw''<Esc>P",
-  { noremap = true, silent = true, desc = "Surround word under cursor with single quotes" })
-vim.keymap.set('n', '<A-w><', 'ciw<><Esc>P',
-  { noremap = true, silent = true, desc = "Surround word under cursor between less-greater" })
+-- terminal
+vim.keymap.set('n', '<leader>tt', ':term<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>tv', ':vnew term://zsh<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>ts', ':new term://zsh<CR>', { noremap = true, silent = true })
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
 
-vim.keymap.set('v', '<A-w>"', 'c""<Esc>P',
-  { noremap = true, silent = true, desc = "Sorrund word under cursor with double quotes" })
-vim.keymap.set('v', '<A-w>(', 'c()<Esc>P',
-  { noremap = true, silent = true, desc = "Surrond word under cursor with parenthesis" })
-vim.keymap.set('v', '<A-w>[', 'c[]<Esc>P',
-  { noremap = true, silent = true, desc = "Surround word under cursor with square brackets" })
-vim.keymap.set('v', '<A-w>{', 'c{}<Esc>P',
-  { noremap = true, silent = true, desc = "Surround word under cursor with brackets" })
-vim.keymap.set('v', "<A-w>'", "c''<Esc>P",
-  { noremap = true, silent = true, desc = "Surround word under cursor with single quotes" })
-vim.keymap.set('v', '<A-w><', 'c<><Esc>P',
-  { noremap = true, silent = true, desc = "Surround word under cursor between less-greater" })
+-- panes
+vim.keymap.set('n', '<leader>h', ':vertical resize -5<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>l', ':vertical resize +5<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>k', ':resize -2<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>j', ':resize +2<CR>', { noremap = true, silent = true })
 
 vim.api.nvim_create_autocmd({ "CursorHold", "BufEnter" }, {
   pattern = { "*" },
