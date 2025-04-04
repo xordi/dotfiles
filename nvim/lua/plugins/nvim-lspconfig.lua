@@ -15,8 +15,6 @@ return {
       local keymap_opts = { buffer = bufnr }
       vim.keymap.set("n", "K", vim.lsp.buf.hover, keymap_opts)
       vim.keymap.set("n", "<A-K>", vim.lsp.buf.signature_help, keymap_opts)
-      vim.keymap.set("n", "rn", vim.lsp.buf.rename, keymap_opts)
-      vim.keymap.set("n", "ga", vim.lsp.buf.code_action, keymap_opts)
 
       vim.keymap.set("n", "<leader>lc", "I//<Esc>", keymap_opts)
       vim.keymap.set("v", "<leader>c", ":s@^@//@<cr><Esc>", keymap_opts)
