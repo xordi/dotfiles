@@ -59,10 +59,34 @@ vim.keymap.set('n', '<leader>ts', ':new term://zsh<CR>', { noremap = true, silen
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
 
 -- panes
-vim.keymap.set('n', '<leader>h', ':vertical resize -5<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>l', ':vertical resize +5<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>k', ':resize -2<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>j', ':resize +2<CR>', { noremap = true, silent = true })
+
+-- Helper function for resizing panes
+local function resize_pane(direction)
+  if vim.fn.winnr("$") == 1 then
+    return
+  end
+
+  if direction == "left" then
+    if vim.fn.winnr() == vim.fn.winnr('$') then
+      vim.cmd('vertical resize +5')
+    else
+      vim.cmd('vertical resize -5')
+    end
+  elseif direction == "right" then
+    if vim.fn.winnr() == 1 then
+      vim.cmd('vertical resize +5') -- Resize to the right in the leftmost window
+    else
+      vim.cmd('vertical resize -5') -- Resize to the left in the rightmost window
+    end
+  end
+end
+
+vim.keymap.set('n', '<leader>h', function() resize_pane("left") end,
+  { noremap = true, silent = true, desc = 'Resize or move left' })
+vim.keymap.set('n', '<leader>l', function() resize_pane("right") end,
+  { noremap = true, silent = true, desc = 'Resize or move right' })
 
 vim.api.nvim_create_autocmd({ "CursorHold", "BufEnter" }, {
   pattern = { "*" },
