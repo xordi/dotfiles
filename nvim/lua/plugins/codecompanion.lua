@@ -20,4 +20,5 @@ return {
     "nvim-treesitter/nvim-treesitter",
   },
   config = true,
+  cmd = { "CodeCompanion", "CodeCompanionChat", "CodeCompanionActions", "CodeCompanionCmd" },
 }
