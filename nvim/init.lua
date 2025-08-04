@@ -1,19 +1,67 @@
-require("core")
-require("custom_commands")
+-- visual settings
+vim.cmd.colorscheme('unokai')
+vim.opt.completeopt = 'menuone,noinsert,noselect'
 
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
-end
-vim.opt.rtp:prepend(lazypath)
+-- editor
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.signcolumn = 'yes'
+vim.g.mapleader = ' '
 
-require("lazy").setup({
-  { import = "plugins" }
+-- grep
+vim.opt.grepprg = 'rg --vimgrep --no-heading --smart-case'
+vim.opt.grepformat = '%f:%l:%c:%m'
+
+-- indentation
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+vim.opt.wrap = false
+
+-- file handling
+vim.opt.swapfile = false
+vim.opt.autoread = true
+vim.opt.autowrite = true
+vim.opt.autowriteall = true
+
+-- editor mappings
+vim.keymap.set('n', '<C-s>', ':w<CR>', { silent = true })
+vim.keymap.set('i', 'jj', '<ESC>', { silent = true })
+vim.keymap.set('i', 'AA', '<ESC>A', { silent = true })
+vim.keymap.set('i', 'II', '<ESC>I', { silent = true })
+vim.keymap.set('n', '<Esc>', ':nohl<CR>', { silent = true })
+
+-- window navigation
+vim.keymap.set('n', '<C-j>', '<C-w>j', { silent = true })
+vim.keymap.set('n', '<C-k>', '<C-w>k', { silent = true })
+vim.keymap.set('n', '<C-h>', '<C-w>h', { silent = true })
+vim.keymap.set('n', '<C-l>', '<C-w>l', { silent = true })
+
+-- clipboard
+vim.keymap.set({ 'n', 'v', 'x' }, '<leader>y', '"+y')
+vim.keymap.set({ 'n', 'v', 'x' }, '<leader>p', '"+p')
+
+-- lsp setup
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('lsp', {}),
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+
+    if client:supports_method('textDocument/completion') then
+      vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+    end
+
+    if not client:supports_method('textDocument/willSaveWaitUntil')
+        and client:supports_method('textDocument/formatting') then
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        group = vim.api.nvim_create_augroup('lsp', { clear = false }),
+        buffer = args.buf,
+        callback = function()
+          vim.lsp.buf.format({ bufnr = args.buf, id = client.id, timeout_ms = 1000 })
+        end
+      })
+    end
+  end
 })
+
+vim.lsp.enable('luals')
+vim.lsp.enable('rust_analyzer')
