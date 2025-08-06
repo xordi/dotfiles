@@ -1,6 +1,7 @@
 -- visual settings
-vim.cmd.colorscheme('unokai')
+vim.cmd.colorscheme('default')
 vim.opt.completeopt = 'menuone,noinsert,noselect'
+vim.opt.winborder = 'rounded'
 
 -- editor
 vim.opt.number = true
@@ -29,6 +30,9 @@ vim.keymap.set('i', 'jj', '<ESC>', { silent = true })
 vim.keymap.set('i', 'AA', '<ESC>A', { silent = true })
 vim.keymap.set('i', 'II', '<ESC>I', { silent = true })
 vim.keymap.set('n', '<Esc>', ':nohl<CR>', { silent = true })
+vim.keymap.set('n', '<leader>bd', ':bd<CR>', { silent = true})
+vim.keymap.set('n', 'j', 'jzz', { silent = true})
+vim.keymap.set('n', 'k', 'kzz', { silent = true})
 
 -- window navigation
 vim.keymap.set('n', '<C-j>', '<C-w>j', { silent = true })
@@ -48,6 +52,16 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     if client:supports_method('textDocument/completion') then
       vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+      vim.api.nvim_create_autocmd('InsertCharPre', {
+        group = vim.api.nvim_create_augroup('lsp', { clear = false }),
+        callback = function(_)
+          vim.lsp.completion.get()
+        end
+      })
+    end
+
+    if client:supports_method('textDocument/inlayHint') then
+      vim.lsp.inlay_hint.enable(true)
     end
 
     if not client:supports_method('textDocument/willSaveWaitUntil')
@@ -63,5 +77,27 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end
 })
 
-vim.lsp.enable('luals')
-vim.lsp.enable('rust_analyzer')
+vim.lsp.enable({'luals', 'rust_analyzer'})
+
+-- some kind of essential plugins
+vim.pack.add({'https://github.com/stevearc/oil.nvim'})
+vim.pack.add({'https://github.com/nvim-treesitter/nvim-treesitter'})
+vim.pack.add({'https://github.com/ibhagwan/fzf-lua'})
+
+-- oil setup & config
+require('oil').setup()
+
+vim.keymap.set('n', '_', '<CMD>Oil<CR>', {silent = true, desc = 'Open parent directory'})
+
+-- nvim treesitter config
+require('nvim-treesitter.configs').setup({
+  ensure_installed = { 'rust', 'lua' },
+  auto_install = true,
+})
+
+-- fzf-lua setup
+require('fzf-lua').setup()
+vim.keymap.set('n', '<leader>ff', '<CMD>FzfLua files<CR>', { silent = true })
+vim.keymap.set('n', '<leader>fb', '<CMD>FzfLua buffers<CR>', { silent = true })
+vim.keymap.set('n', '<leader>fs', '<CMD>FzfLua lsp_document_symbols<CR>', { silent = true })
+vim.keymap.set('n', '<leader>fS', '<CMD>FzfLua lsp_workspace_symbols<CR>', { silent = true })
