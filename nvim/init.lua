@@ -50,6 +50,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
 
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
+
     if client:supports_method('textDocument/completion') then
       vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
       vim.api.nvim_create_autocmd('InsertCharPre', {
