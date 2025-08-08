@@ -85,6 +85,7 @@ vim.lsp.enable({'luals', 'rust_analyzer'})
 vim.pack.add({'https://github.com/stevearc/oil.nvim'})
 vim.pack.add({'https://github.com/nvim-treesitter/nvim-treesitter'})
 vim.pack.add({'https://github.com/ibhagwan/fzf-lua'})
+vim.pack.add({'https://github.com/christoomey/vim-tmux-navigator'})
 
 -- oil setup & config
 require('oil').setup()
