@@ -88,7 +88,11 @@ vim.pack.add({'https://github.com/ibhagwan/fzf-lua'})
 vim.pack.add({'https://github.com/christoomey/vim-tmux-navigator'})
 
 -- oil setup & config
-require('oil').setup()
+require('oil').setup({
+  view_options = {
+    show_hidden = true,
+  },
+})
 
 vim.keymap.set('n', '_', '<CMD>Oil<CR>', {silent = true, desc = 'Open parent directory'})
 
