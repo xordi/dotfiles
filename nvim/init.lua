@@ -30,9 +30,9 @@ vim.keymap.set('i', 'jj', '<ESC>', { silent = true })
 vim.keymap.set('i', 'AA', '<ESC>A', { silent = true })
 vim.keymap.set('i', 'II', '<ESC>I', { silent = true })
 vim.keymap.set('n', '<Esc>', ':nohl<CR>', { silent = true })
-vim.keymap.set('n', '<leader>bd', ':bd<CR>', { silent = true})
-vim.keymap.set('n', 'j', 'jzz', { silent = true})
-vim.keymap.set('n', 'k', 'kzz', { silent = true})
+vim.keymap.set('n', '<leader>bd', ':bd<CR>', { silent = true })
+vim.keymap.set('n', 'j', 'jzz', { silent = true })
+vim.keymap.set('n', 'k', 'kzz', { silent = true })
 
 -- window navigation
 vim.keymap.set('n', '<C-j>', '<C-w>j', { silent = true })
@@ -66,6 +66,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.lsp.inlay_hint.enable(true)
     end
 
+    if client:supports_method('textDocument/formatting')
+        or client:supports('textDocument/willSaveWaitUntil') then
+      vim.keymap.set('i', '<C-f>', vim.lsp.buf.format)
+    end
+
     if not client:supports_method('textDocument/willSaveWaitUntil')
         and client:supports_method('textDocument/formatting') then
       vim.api.nvim_create_autocmd('BufWritePre', {
@@ -79,13 +84,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end
 })
 
-vim.lsp.enable({'luals', 'rust_analyzer'})
+vim.lsp.enable({ 'luals', 'rust_analyzer' })
 
 -- some kind of essential plugins
-vim.pack.add({'https://github.com/stevearc/oil.nvim'})
-vim.pack.add({'https://github.com/nvim-treesitter/nvim-treesitter'})
-vim.pack.add({'https://github.com/ibhagwan/fzf-lua'})
-vim.pack.add({'https://github.com/christoomey/vim-tmux-navigator'})
+vim.pack.add({ 'https://github.com/stevearc/oil.nvim' })
+vim.pack.add({ 'https://github.com/nvim-treesitter/nvim-treesitter' })
+vim.pack.add({ 'https://github.com/ibhagwan/fzf-lua' })
+vim.pack.add({ 'https://github.com/christoomey/vim-tmux-navigator' })
 
 -- oil setup & config
 require('oil').setup({
@@ -94,7 +99,7 @@ require('oil').setup({
   },
 })
 
-vim.keymap.set('n', '_', '<CMD>Oil<CR>', {silent = true, desc = 'Open parent directory'})
+vim.keymap.set('n', '_', '<CMD>Oil<CR>', { silent = true, desc = 'Open parent directory' })
 
 -- nvim treesitter config
 require('nvim-treesitter.configs').setup({
