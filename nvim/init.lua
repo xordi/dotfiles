@@ -8,6 +8,8 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = 'yes'
 vim.g.mapleader = ' '
+vim.opt.scrolloff = 999
+vim.opt.autocomplete = true
 
 -- grep
 vim.opt.grepprg = 'rg --vimgrep --no-heading --smart-case'
@@ -31,8 +33,6 @@ vim.keymap.set('i', 'AA', '<ESC>A', { silent = true })
 vim.keymap.set('i', 'II', '<ESC>I', { silent = true })
 vim.keymap.set('n', '<Esc>', ':nohl<CR>', { silent = true })
 vim.keymap.set('n', '<leader>bd', ':bd<CR>', { silent = true })
-vim.keymap.set('n', 'j', 'jzz', { silent = true })
-vim.keymap.set('n', 'k', 'kzz', { silent = true })
 
 -- window navigation
 vim.keymap.set('n', '<C-j>', '<C-w>j', { silent = true })
@@ -54,12 +54,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     if client:supports_method('textDocument/completion') then
       vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
-      vim.api.nvim_create_autocmd('InsertCharPre', {
-        group = vim.api.nvim_create_augroup('lsp', { clear = false }),
-        callback = function(_)
-          vim.lsp.completion.get()
-        end
-      })
     end
 
     if client:supports_method('textDocument/inlayHint') then
