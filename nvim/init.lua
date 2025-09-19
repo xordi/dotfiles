@@ -1,5 +1,5 @@
 -- visual settings
-vim.cmd.colorscheme('default')
+vim.cmd.colorscheme('habamax')
 vim.opt.completeopt = 'menuone,noinsert,noselect'
 vim.opt.winborder = 'rounded'
 
@@ -106,3 +106,6 @@ vim.keymap.set('n', '<leader>ff', '<CMD>FzfLua files<CR>', { silent = true })
 vim.keymap.set('n', '<leader>fb', '<CMD>FzfLua buffers<CR>', { silent = true })
 vim.keymap.set('n', '<leader>fs', '<CMD>FzfLua lsp_document_symbols<CR>', { silent = true })
 vim.keymap.set('n', '<leader>fS', '<CMD>FzfLua lsp_workspace_symbols<CR>', { silent = true })
+vim.keymap.set('n', '<leader>fd', '<CMD>FzfLua lsp_document_diagnostics<CR>', { silent = true })
+vim.keymap.set('n', '<leader>fD', '<CMD>FzfLua lsp_workspace_diagnostics<CR>', { silent = true })
+vim.keymap.set('n', '<leader>fg', '<CMD>FzfLua live_grep<CR>', { silent = true })
