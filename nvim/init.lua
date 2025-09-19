@@ -9,7 +9,6 @@ vim.opt.relativenumber = true
 vim.opt.signcolumn = 'yes'
 vim.g.mapleader = ' '
 vim.opt.scrolloff = 999
-vim.opt.autocomplete = true
 
 -- grep
 vim.opt.grepprg = 'rg --vimgrep --no-heading --smart-case'
