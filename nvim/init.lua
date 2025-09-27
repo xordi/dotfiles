@@ -1,6 +1,5 @@
 -- visual settings
 vim.cmd.colorscheme('habamax')
-vim.opt.completeopt = 'menuone,noinsert,noselect'
 vim.opt.winborder = 'rounded'
 
 -- editor
@@ -9,6 +8,8 @@ vim.opt.relativenumber = true
 vim.opt.signcolumn = 'yes'
 vim.g.mapleader = ' '
 vim.opt.scrolloff = 999
+vim.opt.completeopt = 'menuone,noinsert,noselect'
+vim.opt.complete = '.,w,b,o,u,t'
 
 -- grep
 vim.opt.grepprg = 'rg --vimgrep --no-heading --smart-case'
