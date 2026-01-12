@@ -78,7 +78,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end
 })
 
-vim.lsp.enable({ 'luals', 'rust_analyzer' })
+vim.lsp.enable({ 'elixirls', 'luals', 'rust_analyzer' })
 
 -- some kind of essential plugins
 vim.pack.add({ 'https://github.com/stevearc/oil.nvim' })

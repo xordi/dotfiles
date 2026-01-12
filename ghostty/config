@@ -49,6 +49,7 @@
 # resize-overlay-duration = 4s 200ms
 
 keybind = ctrl+a>|=new_split:right
+keybind = ctrl+a>\=new_split:right
 keybind = ctrl+a>-=new_split:down
 keybind = alt+j=resize_split:down,10
 keybind = alt+k=resize_split:up,10
