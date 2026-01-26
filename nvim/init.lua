@@ -99,8 +99,11 @@ vim.keymap.set('n', '_', '<CMD>Oil<CR>', { silent = true, desc = 'Open parent di
 
 -- nvim treesitter config
 require('nvim-treesitter.configs').setup({
-  ensure_installed = { 'rust', 'lua' },
+  ensure_installed = { 'rust', 'lua', 'elixir', 'heex', 'eex' },
   auto_install = true,
+  highlight = {
+    enable = true,
+  }
 })
 
 -- fzf-lua setup
