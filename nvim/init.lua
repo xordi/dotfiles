@@ -85,6 +85,8 @@ vim.pack.add({ 'https://github.com/stevearc/oil.nvim' })
 vim.pack.add({ 'https://github.com/nvim-treesitter/nvim-treesitter' })
 vim.pack.add({ 'https://github.com/ibhagwan/fzf-lua' })
 vim.pack.add({ 'https://github.com/christoomey/vim-tmux-navigator' })
+vim.pack.add({ 'https://github.com/nvim-lua/plenary.nvim' })
+vim.pack.add({ 'https://github.com/ruifm/gitlinker.nvim' })
 
 -- oil setup & config
 require('oil').setup({
@@ -110,3 +112,8 @@ vim.keymap.set('n', '<leader>fS', '<CMD>FzfLua lsp_workspace_symbols<CR>', { sil
 vim.keymap.set('n', '<leader>fd', '<CMD>FzfLua lsp_document_diagnostics<CR>', { silent = true })
 vim.keymap.set('n', '<leader>fD', '<CMD>FzfLua lsp_workspace_diagnostics<CR>', { silent = true })
 vim.keymap.set('n', '<leader>fg', '<CMD>FzfLua live_grep<CR>', { silent = true })
+
+-- gitlinker setup
+require('gitlinker').setup()
+--vim.keymap.set('n', '<leader>gy', '<cmd>lua require"gitlinker".get_buf_range_url("n", {action_callback = require"gitlinker.actions".copy_to_clipboard})<cr>', {silent = true})
+--vim.keymap.set('v', '<leader>gy', '<cmd>lua require"gitlinker".get_buf_range_url("v", {action_callback = require"gitlinker.actions".copy_to_clipboard})<cr>', {silent = true})
