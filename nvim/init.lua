@@ -98,13 +98,7 @@ require('oil').setup({
 vim.keymap.set('n', '_', '<CMD>Oil<CR>', { silent = true, desc = 'Open parent directory' })
 
 -- nvim treesitter config
-require('nvim-treesitter.configs').setup({
-  ensure_installed = { 'rust', 'lua', 'elixir', 'heex', 'eex' },
-  auto_install = true,
-  highlight = {
-    enable = true,
-  }
-})
+require('nvim-treesitter').install{ 'rust', 'lua', 'elixir', 'heex', 'eex' }
 
 -- fzf-lua setup
 require('fzf-lua').setup()
@@ -118,5 +112,6 @@ vim.keymap.set('n', '<leader>fg', '<CMD>FzfLua live_grep<CR>', { silent = true }
 
 -- gitlinker setup
 require('gitlinker').setup()
---vim.keymap.set('n', '<leader>gy', '<cmd>lua require"gitlinker".get_buf_range_url("n", {action_callback = require"gitlinker.actions".copy_to_clipboard})<cr>', {silent = true})
-vim.keymap.set({'v', 'x'}, '<leader>gy', '<cmd>lua require"gitlinker".get_buf_range_url("v", {action_callback = require"gitlinker.actions".copy_to_clipboard})<cr>', {silent = true})
+vim.keymap.set({ 'v', 'x' }, '<leader>gy',
+  '<cmd>lua require"gitlinker".get_buf_range_url("v", {action_callback = require"gitlinker.actions".copy_to_clipboard})<cr>',
+  { silent = true })
