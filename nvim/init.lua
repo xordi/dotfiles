@@ -69,11 +69,35 @@ vim.api.nvim_create_autocmd('LspAttach', {
         and client:supports_method('textDocument/formatting') then
       vim.api.nvim_create_autocmd('BufWritePre', {
         group = vim.api.nvim_create_augroup('lsp', { clear = false }),
-        buffer = args.buf,
+        buf = args.buf,
         callback = function()
           vim.lsp.buf.format({ bufnr = args.buf, id = client.id, timeout_ms = 1000 })
         end
       })
+    end
+  end
+})
+
+-- formatters setup
+local formatters = {
+  yaml = function(buf)
+    local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+    local formatted = vim.fn.systemlist('yamlfmt -', lines)
+    if vim.v.shell_error == 0 then
+      vim.api.nvim_buf_set_lines(buf, 0, -1, false, formatted)
+    else
+      print("Formatting failed!")
+    end
+  end,
+}
+
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = {'*.yml', '*.yaml'},
+  group = vim.api.nvim_create_augroup('formatters', { clear = false }),
+  callback = function(args)
+    local bin = formatters[vim.bo[args.buf].filetype]
+    if bin then
+      bin(args.buf)
     end
   end
 })
