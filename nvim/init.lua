@@ -102,7 +102,7 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   end
 })
 
-vim.lsp.enable({ 'elixirls', 'luals', 'rust_analyzer' })
+vim.lsp.enable({ 'elixirls', 'luals', 'rust_analyzer', 'zls' })
 
 -- some kind of essential plugins
 vim.pack.add({ 'https://github.com/stevearc/oil.nvim' })
