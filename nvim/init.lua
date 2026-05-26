@@ -1,5 +1,5 @@
 -- visual settings
-vim.cmd.colorscheme('habamax')
+vim.cmd.colorscheme('lunaperche')
 vim.opt.winborder = 'rounded'
 
 -- editor
@@ -86,7 +86,7 @@ local formatters = {
     if vim.v.shell_error == 0 then
       vim.api.nvim_buf_set_lines(buf, 0, -1, false, formatted)
     else
-      print("Formatting failed!")
+      vim.notify("Formatting failed!", vim.log.levels.ERROR)
     end
   end,
 }
@@ -122,7 +122,11 @@ require('oil').setup({
 vim.keymap.set('n', '_', '<CMD>Oil<CR>', { silent = true, desc = 'Open parent directory' })
 
 -- nvim treesitter config
-require('nvim-treesitter').install{ 'rust', 'lua', 'elixir', 'heex', 'eex' }
+require('nvim-treesitter').install{ 'rust', 'lua', 'elixir', 'heex', 'eex', 'yaml', 'markdown' }
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'yaml', 'rust', 'elixir', 'lua', 'markdown' },
+  callback = function() vim.treesitter.start() end
+})
 
 -- fzf-lua setup
 require('fzf-lua').setup()
