@@ -1,6 +1,6 @@
 return {
-  cmd = { '/home/xordi/elixir-ls/language_server.sh' },
-  filetypes = { 'elixir', 'eelixir', 'heex', 'surface' },
+  cmd = { 'dexter', 'lsp' },
+  filetypes = { 'elixir', 'eelixir', 'heex' },
   root_dir = function(bufnr, on_dir)
     local fname = vim.api.nvim_buf_get_name(bufnr)
     --- Elixir workspaces may have multiple `mix.exs` files, for an "umbrella" layout or monorepo.
